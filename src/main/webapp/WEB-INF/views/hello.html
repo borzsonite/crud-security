@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,5 +8,13 @@
 </head>
 <body>
 <h3>Hello everybody!</h3>
+<tr th:each="user: ${users}">
+   <td th:text="${user.id}"></td>
+   <td th:text="${user.name}"></td>
+   <td th:text="${user.department}"></td>
+   <td th:text="${user.salary}"></td>
+
+
+</tr>
 </body>
 </html>
