@@ -1,4 +1,4 @@
-package ru.sergeyrozhkov.crud.config;
+package ru.app.crud.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -10,7 +10,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {ru.sergeyrozhkov.crud.config.SpringConfig.class};
+        return new Class[] {ru.app.crud.config.SpringConfig.class};
     }
 
     @Override

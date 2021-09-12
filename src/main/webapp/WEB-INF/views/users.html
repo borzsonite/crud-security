@@ -87,9 +87,10 @@
 <br>
 
 <h3 th:text="${title}">Add user</h3>
-<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="POST" th:action="@{/user}" th:object="${user}">
+<!--<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">-->
     <ul class="wrapper">
-        <li class="form-row" type="hidden">
+        <li class="form-row">
             <label for="id">Id</label>
             <input type="text" th:field="*{id}" id="id"/>
         </li>

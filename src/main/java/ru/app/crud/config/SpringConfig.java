@@ -1,4 +1,4 @@
-package ru.sergeyrozhkov.crud.config;
+package ru.app.crud.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +28,7 @@ import java.util.Properties;
 //@EnableJpaRepositories("edu.segeyrozhkov.crud.app.repository")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan("ru.sergeyrozhkov.crud")
+@ComponentScan("ru.app.crud")
 @EnableWebMvc
 
 public class SpringConfig implements WebMvcConfigurer {
@@ -87,7 +87,7 @@ public class SpringConfig implements WebMvcConfigurer {
         jpaVendorAdapter.setGenerateDdl(true);
         jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
 
-        factory.setPackagesToScan(new String[] {"ru.sergeyrozhkov.crud.model"});
+        factory.setPackagesToScan(new String[] {"ru.app.crud.model"});
         factory.setJpaProperties(additionalProperties());
         factory.setJpaVendorAdapter(jpaVendorAdapter);
 

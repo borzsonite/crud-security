@@ -1,10 +1,10 @@
-package ru.sergeyrozhkov.crud.service;
+package ru.app.crud.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.sergeyrozhkov.crud.dao.UserDao;
-import ru.sergeyrozhkov.crud.model.User;
+import ru.app.crud.dao.UserDao;
+import ru.app.crud.model.User;
 
 import java.util.List;
 
@@ -37,6 +37,12 @@ public class UserServiceImp implements UserService {
             user.setSalary(newUser.getSalary());
             userDao.save(user);
         }
+    }
+
+    @Transactional
+    @Override
+    public void remove(User user) {
+        userDao.remove(user);
     }
 
     @Transactional

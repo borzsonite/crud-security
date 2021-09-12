@@ -1,7 +1,7 @@
-package ru.sergeyrozhkov.crud.dao;
+package ru.app.crud.dao;
 
 import org.springframework.stereotype.Repository;
-import ru.sergeyrozhkov.crud.model.User;
+import ru.app.crud.model.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,6 +24,11 @@ public class UserDaoImp implements UserDao {
     @Override
     public void save(User user) {
         entityManager.persist(user);
+    }
+
+    @Override
+    public void remove(User user) {
+        entityManager.remove(entityManager.merge(user));
     }
 
     @Override
