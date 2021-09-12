@@ -27,7 +27,7 @@ public class UserServiceImp implements UserService {
     @Override
     public void save(User newUser) {
         Long userId = newUser.getId();
-        if (userId.equals(null)) {
+        if (userId == null) {
             userDao.save(newUser);
             return;
         } else {

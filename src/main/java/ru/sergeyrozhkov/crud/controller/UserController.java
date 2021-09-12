@@ -35,10 +35,17 @@ public class UserController {
         return "hello";
     }
 
-    @PostMapping("/user/{id}")
-    public String addUser(@PathVariable String id, @ModelAttribute(value = "user") User user) {
-            userService.save(user);
+    @PostMapping("/user")
+    public String addUser(@ModelAttribute(value = "user") User user) {
+        userService.save(user);
         return "redirect:/";
     }
+
+    @PostMapping("/user/{id}")
+    public String editUser(@PathVariable(value = "id") Long id, @ModelAttribute(value = "user") User user) {
+        userService.save(user);
+        return "redirect:/";
+    }
+
 }
 
