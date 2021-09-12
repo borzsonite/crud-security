@@ -1,27 +1,34 @@
 package ru.sergeyrozhkov.crud.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.sergeyrozhkov.crud.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-    EntityManagerFactory factory;
+    private EntityManager entityManager;
 
-    @Autowired
-    public void setFactory(EntityManagerFactory factory) {
-        this.factory = factory;
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public List<User> getAllUsers() {
-        EntityManager manager = factory.createEntityManager();
-        TypedQuery<User> query = manager.createQuery("from User", User.class);
+        TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         return query.getResultList();
+    }
+
+    @Override
+    public void save(User user) {
+        entityManager.persist(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        User user = entityManager.find(User.class, id);
+        return user;
     }
 }
