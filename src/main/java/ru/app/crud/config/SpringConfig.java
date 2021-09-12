@@ -25,7 +25,6 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-//@EnableJpaRepositories("edu.segeyrozhkov.crud.app.repository")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("ru.app.crud")

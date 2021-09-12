@@ -24,7 +24,7 @@ public class UserController {
     public String showUsers(Model model) {
         User user = new User();
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("title", "Add");
+        model.addAttribute("title", "Add user");
         model.addAttribute("user", user);
         return "users";
     }
@@ -37,7 +37,9 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
+        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("title", "Edit user");
         return "users";
     }
 
