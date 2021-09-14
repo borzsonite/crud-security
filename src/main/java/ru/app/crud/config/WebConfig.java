@@ -25,16 +25,14 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
-@PropertySource("classpath:db.properties")
 @ComponentScan("ru.app.crud")
 @EnableWebMvc
 
-public class SpringConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
     @Autowired
-    public SpringConfig(ApplicationContext applicationContext) {
+    public WebConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
@@ -62,54 +60,7 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-//    DataBase Config
-    @Autowired
-    private Environment env;
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUsername(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
-        return dataSource;
-    }
-
-//    EntityManagerFactory Bean Config
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setDataSource(dataSource());
-
-        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        jpaVendorAdapter.setGenerateDdl(true);
-        jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
-
-        factory.setPackagesToScan(new String[] {"ru.app.crud.model"});
-        factory.setJpaProperties(additionalProperties());
-        factory.setJpaVendorAdapter(jpaVendorAdapter);
-
-        return factory;
-    }
-
-    final Properties additionalProperties() {
-        final Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        hibernateProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        hibernateProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        return hibernateProperties;
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager(entityManagerFactory().getObject());
-    }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
 
 
 }

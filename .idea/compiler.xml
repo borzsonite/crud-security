@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="2.3.1" />
         <module name="2.3.1_crud-app" />
+        <module name="2.4.2.spring-security" />
       </profile>
     </annotationProcessing>
   </component>
