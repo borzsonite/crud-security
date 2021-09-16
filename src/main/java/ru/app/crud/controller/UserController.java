@@ -21,34 +21,40 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/admin/show-users")
     public String showUsers(Model model) {
         User user = new User();
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("title", "Add user");
         model.addAttribute("user", user);
-        return "users";
+        return "show-users";
     }
 
-    @PostMapping("/user")
+    @PostMapping("/admin/user")
     public String addUser(@ModelAttribute(value = "user") User user) {
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/admin/show-users";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/admin/edit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("title", "Edit user");
-        return "users";
+        return "/show-users";
     }
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/admin/remove/{id}")
     public String removeUser(@PathVariable(value = "id") Long id) {
         User user = userService.getUserById(id);
         userService.remove(user);
-        return "redirect:/";
+        return "redirect:/admin/show-users";
+    }
+
+    @GetMapping("/user/{id}")
+    public String showUserPage(@PathVariable Long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user_page";
     }
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
