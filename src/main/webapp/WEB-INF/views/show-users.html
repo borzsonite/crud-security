@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,15 +84,15 @@
         <td align="center" th:text="${user.getUsername()}"></td>
         <td align="center" th:text="${user.getDepartment()}"></td>
         <td align="center" th:text="${user.getSalary()}"></td>
-        <td align="center"><a href="edit_user.html" th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a></td>
-        <td align="center"><a href="remove_user.html" th:href="@{/remove/{id}(id=${user.getId()})}">Remove</a></td>
+        <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
+        <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a></td>
     </tr>
 </table>
 <br>
 <br>
 
 
-<form th:method="POST" th:action="@{/user}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/user}" th:object="${user}">
     <!--<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">-->
     <ul class="wrapper">
         <li class="form-row">
