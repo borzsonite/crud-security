@@ -26,5 +26,5 @@ insert into users(username, password, department, salary) values ('admin', '$2a$
 insert into roles (name) values ('ROLE_USER'), ('ROLE_ADMIN');
 insert into users_roles(user_id, role_id) values (1,2);
 
-update users set password='{bcrypt}$2a$12$pDOfl1ZyiF6q4CVkhlxZluuIcn/MVcEUI90y9AMDB2.uMgbRSK8Fe' where id=1;
+update users set password='$2a$12$nlV7/1J78YOTXoR8RhVr0.fPgyHYSwB4t.Y/rRBdCdOEJJ5Z4Wci6' where id=1;
 # update users set password='100' where id=1;
