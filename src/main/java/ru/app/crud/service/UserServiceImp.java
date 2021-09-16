@@ -1,6 +1,9 @@
 package ru.app.crud.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.app.crud.dao.UserDao;
@@ -9,7 +12,7 @@ import ru.app.crud.model.User;
 import java.util.List;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImp implements UserService, UserDetailsService {
     private UserDao userDao;
 
     @Autowired
@@ -32,7 +35,7 @@ public class UserServiceImp implements UserService {
             return;
         } else {
             User user = userDao.getUserById(userId);
-            user.setName(newUser.getName());
+            user.setUsername(newUser.getUsername());
             user.setDepartment(newUser.getDepartment());
             user.setSalary(newUser.getSalary());
             userDao.save(user);
@@ -49,5 +52,15 @@ public class UserServiceImp implements UserService {
     @Override
     public User getUserById(Long id) {
         return userDao.getUserById(id);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        return userDao.getUserByName(name);
     }
 }

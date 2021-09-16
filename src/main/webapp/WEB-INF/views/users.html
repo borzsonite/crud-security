@@ -80,7 +80,7 @@
     </tr>
     <tr th:if="not ${users.isEmpty()}" th:each="user: ${users}">
         <td align="center" th:text="${user.getId()}"></td>
-        <td align="center" th:text="${user.getName()}"></td>
+        <td align="center" th:text="${user.getUsername()}"></td>
         <td align="center" th:text="${user.getDepartment()}"></td>
         <td align="center" th:text="${user.getSalary()}"></td>
         <td align="center"><a href="edit_user.html" th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a></td>
@@ -101,7 +101,7 @@
         <br>
         <li class="form-row">
             <label for="name">Name</label>
-            <input type="text" th:field="*{name}" id="name"/>
+            <input type="text" th:field="*{username}" id="name"/>
         </li>
         <br>
         <li class="form-row">
