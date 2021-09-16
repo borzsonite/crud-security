@@ -56,6 +56,10 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getDepartment() {
         return department;
     }
@@ -66,10 +70,6 @@ public class User implements UserDetails {
 
     public int getSalary() {
         return salary;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setSalary(int salary) {
@@ -101,12 +101,12 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
