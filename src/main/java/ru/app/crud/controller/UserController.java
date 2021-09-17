@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/admin/show-users")
+    @GetMapping("/admin")
     public String showUsers(Model model) {
         User user = new User();
         model.addAttribute("users", userService.getAllUsers());
@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/admin/user")
     public String addUser(@ModelAttribute(value = "user") User user) {
         userService.save(user);
-        return "redirect:/admin/show-users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/admin/edit/{id}")
@@ -48,7 +48,7 @@ public class UserController {
     public String removeUser(@PathVariable(value = "id") Long id) {
         User user = userService.getUserById(id);
         userService.remove(user);
-        return "redirect:/admin/show-users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/user/{id}")

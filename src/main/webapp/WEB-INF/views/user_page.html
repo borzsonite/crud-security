@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,12 +13,10 @@
 <p th:text="${'department: ' + user.getDepartment()}"></p>
 <p th:text="${'salary: ' + user.getSalary()}"></p>
 <br>
-<a th:href="@{/logout}" style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
-<a th:href="@{/logout}" style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">CRUD</a>
-
-<div sec:authorize="hasAuthority('ADMIN')">
-    This content is only shown to administrators.
-</div>
+<a th:href="@{/logout}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
+<a th:href="@{/admin}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px;  margin-left:40px; background: aquamarine;  text-decoration: none">CRUD</a>
 
 </body>
 </html>

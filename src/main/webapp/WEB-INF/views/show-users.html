@@ -51,7 +51,7 @@
             border-style: solid;
             border-width: 1px;
             border-color: #ccc;
-            float: left;
+            width: fit-content;
         }
 
         label {
@@ -93,7 +93,6 @@
 
 
 <form th:method="POST" th:action="@{/admin/user}" th:object="${user}">
-    <!--<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">-->
     <ul class="wrapper">
         <li class="form-row">
             <h3 th:text="${title}">Add user</h3>
@@ -118,5 +117,8 @@
         <input type="submit" value="Submit">
     </ul>
 </form>
+<br>
+<a th:href="@{/logout}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
 </body>
 </html>
