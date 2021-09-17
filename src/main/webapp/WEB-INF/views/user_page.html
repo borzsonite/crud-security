@@ -15,11 +15,9 @@
 <a th:href="@{/logout}" style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
 <a th:href="@{/logout}" style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">CRUD</a>
 
-<table class="tg" th:if="not ${userList.isEmpty()}">
-<div th:if="${user.getRoles().stream()}">
+<div sec:authorize="hasAuthority('ADMIN')">
     This content is only shown to administrators.
 </div>
-
 
 </body>
 </html>
